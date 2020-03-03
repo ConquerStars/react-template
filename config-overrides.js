@@ -1,5 +1,4 @@
 const { override, fixBabelImports, addLessLoader } = require('customize-cra');
-// const proxy = require('http-proxy-middleware');
 
 module.exports = override(
   fixBabelImports('import', {
@@ -14,16 +13,3 @@ module.exports = override(
     },
   }),
 );
-
-// module.exports = function(app) {
-//   app.use(
-//     '/api',
-//     proxy({
-//       target: 'https://www.baidu.com',
-//       changeOrigin: true,
-//       // pathRewrite: {
-//       //   "^/api": "/"
-//       // }
-//     })
-//   );
-// };
