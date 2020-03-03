@@ -1,23 +1,21 @@
 import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
 import 'App.less'
 
-import { Button } from 'antd-mobile'
-import axios from 'axios'
-
-let getRequest = (params = {k: 'antd-mobile'}) => {
-  axios.get(`/api/v1`, {params}).then(({data})=> {
-    console.log(data)
-  }).catch(err=> {
-    console.log(err)
-  }).finally(()=> {
-    // do something
-  })
-}
+import detail from 'page/Detail'
+import main from 'page/Main'
+import pagination from 'page/Pagination'
+import ShoppingList from 'page/demo'
 
 function App() {
   return (
     <div className="App">
-      <Button onClick={()=>getRequest()}>按钮</Button>
+      <BrowserRouter>
+        <Route path='/'  exact render={main} />
+        <Route path='/detail'  exact render={detail} />
+        <Route path='/pagination'  exact render={pagination} />
+        <Route path='/demo'  exact component={ShoppingList} />
+      </BrowserRouter>
     </div>
   )
 }
