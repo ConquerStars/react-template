@@ -2,8 +2,9 @@
 
 > 基于create-react-app脚手架搭建的模板项目  
 > 目前已集成了[antd-mobile](https://mobile.ant.design/)的UI框架（按需引用配置）、less样式预处理  
-> 定制主题 [点这里](https://github.com/ant-design/ant-design-mobile/blob/master/components/style/themes/default.less)  修改```./config-overrides.js``` 下的modifyVars配置  
+> 可[定制主题](https://github.com/ant-design/ant-design-mobile/blob/master/components/style/themes/default.less)  修改```./config-overrides.js``` 下的modifyVars配置  
 > 使用[http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware)代理后台接口，配置在```./src/setupProxy.js```   
+> ```npm run build``` 默认移除sourcemap文件，配置在```./.env```  
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
