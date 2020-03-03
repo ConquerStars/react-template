@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.less'
+import 'App.less'
 
 import { Button } from 'antd-mobile'
 import axios from 'axios'
