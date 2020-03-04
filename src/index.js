@@ -1,6 +1,8 @@
 // import "react-app-polyfill/ie9"
-import "react-app-polyfill/ie11"
+// 兼容ie9 请看这里 https://zh-hans.reactjs.org/docs/javascript-environment-requirements.html
+// but 似乎并不起效  <ie11下仍会提示 "Map" is undefined
 
+import "react-app-polyfill/ie11"
 // Make sure to follow the Internet Explorer steps above if you need to support Internet Explorer in your application.
 // import "react-app-polyfill/stable"
 
