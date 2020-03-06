@@ -1,20 +1,16 @@
 import React from 'react'
-import { Button } from 'antd-mobile'
 
-let logpage = (history) => {
-  history.push('/')
+class RenderForm extends React.Component{
+  render(){
+    return (
+      <div>详情页</div>
+    )
+  }
 }
 
-let back = (history) => {
-  history.goBack()
-}
-
-export default ({ history })=> {
+export default ()=> {
   return (
-    <div>
-      <Button onClick={()=>logpage(history)}>跳转到主页</Button>
-      <Button onClick={()=>back(history)}>返回</Button>
-    </div>
+    <RenderForm />
   )
 }
 
