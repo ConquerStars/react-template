@@ -1,13 +1,35 @@
 import React from 'react'
-import { Grid, Toast } from 'antd-mobile'
-import { withRouter } from 'react-router-dom'
+import {Grid, Toast} from 'antd-mobile'
+import {withRouter} from 'react-router-dom'
+import {dataCollection} from 'api/service'
 
 class Tplist extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      data: []
-    }
+
+  state = {
+    pagination: {
+      current: 1,
+      pageSize: 20,
+      total: 0
+    },
+    data: []
+  }
+  fetchList(){
+    Toast.loading('加载中...', 10)
+    dataCollection.fetchList({
+      page: this.state.pagination.current,
+      per_page: this.state.pagination.pageSize,
+    }).then(({data})=> {
+      this.setState({
+        pagination: {
+          current: data.pageNum,
+          pageSize: data.pageSize,
+          total: data.total
+        },
+        data: data.result || []
+      })
+    }).finally(()=> {
+      Toast.hide()
+    })
   }
   goDetail (obj) {
     this.props.history.push(`/detail/${obj.id}`)
@@ -19,10 +41,10 @@ class Tplist extends React.Component{
           <div>
             {_el.icon?
               <div className="badge_img" style={{backgroundImage: `url(${_el.icon})`}} />:
-              <div className="badge">{_el.title.slice(0,2)}</div>
+              <div className="badge">{_el.name.slice(0,2)}</div>
             }
             <div className="tp_title">
-              <span>{_el.title}</span>
+              <span>{_el.name}</span>
             </div>
           </div>
         )} />
@@ -30,25 +52,8 @@ class Tplist extends React.Component{
     )
   }
   componentDidMount(){
-    Toast.loading('加载中...', 10, () => {
-      console.log('Load complete !!!')
-    })
-    setTimeout(()=> {
-      Toast.hide()
-      this.setState({
-        data: [
-          {id: 1, title: '假装是模板数据', icon: 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png'},
-          {id: 2, title: '身体健康调查表'},
-          {id: 3, title: '疫情期间体温上报'},
-          {id: 4, title: '民意调查问卷'},
-        ]
-      })
-    }, 500)
+    document.title = '信息上报'
+    this.fetchList()
   }
 }
 export default withRouter(Tplist)
-// export default ()=> {
-//   return (
-//     <Tplist />
-//   )
-// }
