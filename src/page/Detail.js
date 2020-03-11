@@ -36,7 +36,11 @@ class RenderForm extends React.Component{
       <div className="form_detail">
         {this.state.formItem.map((item, index) =>
           <List renderHeader={() => {
-              return <span>{item.title}{item.required?<span className="isRequired">*</span>:''}</span>
+              return <span>
+                {item.title}
+                {item.required?<span className="isRequired">*</span>:''}
+                {item.type === 'CHECKBOX'?<span style={{opacity: 0.7}}>(多选)</span>:''}
+              </span>
             }} key={item.id}>
             <RenderInputItem item={item} onChange={(v) => {this.updateValue(index, v)}} onBlur={() => { console.log('onBlur', item.value) }} />
           </List>
