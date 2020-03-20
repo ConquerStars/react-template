@@ -13,14 +13,22 @@ class RenderForm extends React.Component{
   fethCtrs(){
     if(this.props.match.params.id){
       Toast.loading('加载中...', 10)
-      dataCollection.fetchDetail(this.props.match.params.id).then(({data})=> {
-        document.title = data.name || ''
+      // dataCollection.fetchDetail(this.props.match.params.id).then(({data})=> {
+      //   document.title = data.name || ''
+      //   this.setState({
+      //     formItem: data.controls
+      //   })
+      // }).finally(()=> {
+      //   Toast.hide()
+      // })
+      setTimeout(()=>{
         this.setState({
-          formItem: data.controls
+          formItem: [
+            {id: Math.random(), }
+          ]
         })
-      }).finally(()=> {
         Toast.hide()
-      })
+      }, 500)
     }
   }
   updateValue(index, value){

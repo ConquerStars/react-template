@@ -9,28 +9,50 @@ class Tplist extends React.Component{
   state = {
     pagination: {
       current: 1,
-      pageSize: 20,
+      pageSize: 50,
       total: 0
     },
     data: []
   }
   fetchList(){
     Toast.loading('加载中...', 10)
-    dataCollection.fetchList({
-      page: this.state.pagination.current,
-      per_page: this.state.pagination.pageSize,
-    }).then(({data})=> {
+    // dataCollection.fetchList({
+    //   page: this.state.pagination.current,
+    //   per_page: this.state.pagination.pageSize,
+    // }).then(({data})=> {
+    //   this.setState({
+    //     pagination: {
+    //       current: data.pageNum,
+    //       pageSize: data.pageSize,
+    //       total: data.total
+    //     },
+    //     data: data.result || []
+    //   })
+    // }).finally(()=> {
+    //   Toast.hide()
+    // })
+    setTimeout(()=> {
       this.setState({
-        pagination: {
-          current: data.pageNum,
-          pageSize: data.pageSize,
-          total: data.total
-        },
-        data: data.result || []
+        // pagination: {
+        //   current: data.pageNum,
+        //   pageSize: data.pageSize,
+        //   total: data.total
+        // },
+        data: [
+          {id: Math.random(), name: '测试模板'},
+          {id: Math.random(), name: '测试模板'},
+          {id: Math.random(), name: '测试模板'},
+          {id: Math.random(), name: '测试模板'},
+          {id: Math.random(), name: '测试模板'},
+          {id: Math.random(), name: '测试模板'},
+          {id: Math.random(), name: '测试模板'},
+          {id: Math.random(), name: '测试模板'},
+          {id: Math.random(), name: '测试模板'},
+          {id: Math.random(), name: '测试模板'},
+        ]
       })
-    }).finally(()=> {
       Toast.hide()
-    })
+    }, 1000)
   }
   goDetail (obj) {
     this.props.history.push(`/detail/${obj.id}`)
@@ -38,20 +60,18 @@ class Tplist extends React.Component{
   render(){
     return (
       <div className="template_list">
-        {this.state.data.length>0?
-          <Grid data={this.state.data} onClick={(_el)=>this.goDetail(_el)} columnNum={3} renderItem={_el=> (
-            <div>
-              {_el.icon?
-                <div className="badge_img" style={{backgroundImage: `url(${_el.icon})`}} />:
-                <div className="badge">{_el.name.slice(0,2)}</div>
-              }
-              <div className="tp_title">
-                <span>{_el.name}</span>
-              </div>
+        {this.state.data.length>0?<Grid data={this.state.data} onClick={(_el)=>this.goDetail(_el)} columnNum={3} renderItem={_el=> (
+          <div>
+            {_el.icon?
+              <div className="badge_img" style={{backgroundImage: `url(${_el.icon})`}} />:
+              <div className="badge">{_el.name.slice(0,2)}</div>
+            }
+            <div className="tp_title">
+              <span>{_el.name}</span>
             </div>
-          )} />:
-          <Empty />
-        }
+          </div>
+        )} />:
+        <Empty />}
       </div>
     )
   }
