@@ -2,7 +2,7 @@ import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {List, Toast} from 'antd-mobile'
 import RenderInputItem from 'components/RenderInputItem'
-import {dataCollection} from 'api/service'
+// import {dataCollection} from 'api/service'
 
 import 'page/Detail.less'
 
@@ -24,7 +24,15 @@ class RenderForm extends React.Component{
       setTimeout(()=>{
         this.setState({
           formItem: [
-            {id: Math.random(), }
+            {id: Math.random()},
+            {id: Math.random()},
+            {id: Math.random()},
+            {id: Math.random()},
+            {id: Math.random()},
+            {id: Math.random()},
+            {id: Math.random()},
+            {id: Math.random()},
+            {id: Math.random()},
           ]
         })
         Toast.hide()

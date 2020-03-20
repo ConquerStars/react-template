@@ -1,7 +1,7 @@
 import React from 'react'
 import {Grid, Toast} from 'antd-mobile'
 import {withRouter} from 'react-router-dom'
-import {dataCollection} from 'api/service'
+// import {dataCollection} from 'api/service'
 import Empty from 'components/Empty'
 
 class Tplist extends React.Component{

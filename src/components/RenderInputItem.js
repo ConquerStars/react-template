@@ -19,8 +19,8 @@ class RenderInputItem extends React.Component{
       }
       onChange(item.value)
     }
-    let imgChange = ()=> {
-      console.log(...arguments, 1)
+    let imgChange = (files, type, index)=> {
+      console.log(files, type, index)
     }
 
     let input = <InputItem clear value={item.value} onChange={onChange} onBlur={onBlur} />
@@ -53,7 +53,7 @@ class RenderInputItem extends React.Component{
         <List.Item arrow="horizontal"> </List.Item>
       </DatePicker>
     } else if (type === 'IMAGE') {
-      input = <ImagePicker files={item.value} onChange={imgChange} />
+      input = <ImagePicker onChange={imgChange} />
     }
     return input
   }
