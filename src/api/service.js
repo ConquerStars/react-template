@@ -4,7 +4,7 @@ axios.defaults.headers = { 'Device-Type': 'win32'}
 axios.defaults.crossDomain = true
 axios.defaults.withCredentials = true
 
-let Authorization = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiSkdHTFkiLCJKU0RDRyIsIldDU0paWSIsIlpDWlhHIiwiWkZZIiwiWlhTSkdMWSJdLCJpc3MiOiJkaC1kYXRhLmNvbSIsInBpY3R1cmUiOiJodHRwOi8vYXZhdGFyLmppY2hhLW9ubGluZS5vcmcvYXZhdGFyL2RlZmF1bHQucG5nIiwicmVhbE5hbWUiOiLliJjli4ciLCJlbWFpbFZlcmlmaWVkIjpmYWxzZSwic3lzdGVtIjoxMDEwMCwicGhvbmVOdW1iZXIiOiIxMzgyNTI0NTQ2MiIsInBob25lTnVtYmVyVmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE1ODM4MTI5NjEsImp0aSI6IjA1YTc3NGVjZTcwZTQ2MmQ4YWZhNWYzNmYyYTc4ZDYxIiwiZW1haWwiOiJ5b25nbGl1QGRoLWRhdGEuY29tIiwidXNlcm5hbWUiOiJ5b29vbmcifQ.K8sgVImdu7cJn-lf5REXIQORbeNlS3W5wnREhb4ksUU'
+let Authorization = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwicm9sZXMiOlsiWkNaWEciXSwiaXNzIjoiZGgtZGF0YS5jb20iLCJwaWN0dXJlIjoiaHR0cDovL2F2YXRhci5qaWNoYS1vbmxpbmUub3JnL2F2YXRhci9kZWZhdWx0LnBuZyIsInJlYWxOYW1lIjoi5byg6IGqIiwiZW1haWxWZXJpZmllZCI6ZmFsc2UsInN5c3RlbSI6MTAxMDAsInBob25lTnVtYmVyIjoiMTM1ODA1OTc3NDciLCJwaG9uZU51bWJlclZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNTg0NTkwNDkwLCJqdGkiOiI0YWU0NWIzNzYxZWE0YWYyYTQwYmZlN2VlNjYyY2JmNiIsImVtYWlsIjoiY29uZ3poYW5nQGRoLWRhdGEuY29tIiwidXNlcm5hbWUiOiJjb29vbmcifQ.zXxkQjjOo70G4uGBgw9q1Vao3FWMacth-ugxCsyB7u4'
 // try {
 //   Authorization = native.getData("JWT") || ''
 // } catch (e) {
@@ -19,7 +19,7 @@ axios.interceptors.request.use(config => {
 
 let dataCollection = {
   fetchList(params){ // 获取模板列表
-    return axios.get(`/collection/templates/pager`, {params})
+    return axios.get(`/collection/reports/pager`, {params})
   },
   fetchDetail(id){ // 获取表单详情
     return axios.get(`/collection/templates/${id}`)

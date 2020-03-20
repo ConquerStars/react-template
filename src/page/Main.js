@@ -2,6 +2,7 @@ import React from 'react'
 import {Grid, Toast} from 'antd-mobile'
 import {withRouter} from 'react-router-dom'
 import {dataCollection} from 'api/service'
+import Empty from 'components/Empty'
 
 class Tplist extends React.Component{
 
@@ -37,17 +38,20 @@ class Tplist extends React.Component{
   render(){
     return (
       <div className="template_list">
-        <Grid data={this.state.data} onClick={(_el)=>this.goDetail(_el)} columnNum={3} renderItem={_el=> (
-          <div>
-            {_el.icon?
-              <div className="badge_img" style={{backgroundImage: `url(${_el.icon})`}} />:
-              <div className="badge">{_el.name.slice(0,2)}</div>
-            }
-            <div className="tp_title">
-              <span>{_el.name}</span>
+        {this.state.data.length>0?
+          <Grid data={this.state.data} onClick={(_el)=>this.goDetail(_el)} columnNum={3} renderItem={_el=> (
+            <div>
+              {_el.icon?
+                <div className="badge_img" style={{backgroundImage: `url(${_el.icon})`}} />:
+                <div className="badge">{_el.name.slice(0,2)}</div>
+              }
+              <div className="tp_title">
+                <span>{_el.name}</span>
+              </div>
             </div>
-          </div>
-        )} />
+          )} />:
+          <Empty />
+        }
       </div>
     )
   }
