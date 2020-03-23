@@ -24,15 +24,16 @@ class RenderForm extends React.Component{
       setTimeout(()=>{
         this.setState({
           formItem: [
-            {id: Math.random()},
-            {id: Math.random()},
-            {id: Math.random()},
-            {id: Math.random()},
-            {id: Math.random()},
-            {id: Math.random()},
-            {id: Math.random()},
-            {id: Math.random()},
-            {id: Math.random()},
+            {id: Math.random(), type: 'TEXT', title: '单行', required: true},
+            {id: Math.random(), type: 'TEXTAREA', title: '多行'},
+            {id: Math.random(), type: 'RADIO', title: '单选', content: '["男", "女"]'},
+            {id: Math.random(), type: 'CHECKBOX', title: '多选', content: '["篮球", "唱", "跳", "RAP"]'},
+            {id: Math.random(), type: 'DATETIME', title: '日期时间'},
+            {id: Math.random(), type: 'DATE', title: '日期'},
+            {id: Math.random(), type: 'TIME', title: '时间'},
+            {id: Math.random(), type: 'FILE', title: '文件'},
+            {id: Math.random(), type: 'VIDEO', title: '视频'},
+            {id: Math.random(), type: 'IMAGE', title: '图片'},
           ]
         })
         Toast.hide()
@@ -51,7 +52,7 @@ class RenderForm extends React.Component{
     return (
       <div className="form_detail">
         {this.state.formItem.map((item, index) =>
-          <List renderHeader={() => {
+          <List className={(item.type==='FILE'||item.type==='IMAGE'||item.type==='VIDEO')?'no_bgc':''} renderHeader={() => {
               return <span>
                 {item.title}
                 {item.required?<span className="isRequired">*</span>:''}

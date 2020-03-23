@@ -1,12 +1,18 @@
 import React from 'react'
 import {InputItem, TextareaItem, Picker, Checkbox, DatePicker, ImagePicker, List} from 'antd-mobile'
+import file_icon from 'assets/file_icon.png'
 
 class RenderInputItem extends React.Component{
 
   render(){
     let {item, onChange, onBlur} = this.props
-    // let type = item.type
-    let type = 'IMAGE'
+
+    let acceptType = {
+      FILE: '*',
+      IMAGE: 'image/*',
+      VIDEO: 'video/*'
+    }
+    let type = item.type
     let handlerCheckBoxChange = (v, isChecked, item)=>{
       if(isChecked){ // 选中
         if(item.value && item.value instanceof Array){
@@ -19,8 +25,31 @@ class RenderInputItem extends React.Component{
       }
       onChange(item.value)
     }
-    let imgChange = (files, type, index)=> {
-      console.log(files, type, index)
+
+    let handlerImageSelect = (files)=> {
+      let temp = []
+      if(files.length){
+        temp = [files[files.length-1]]
+      }
+      // TODO upload Image
+      onChange(temp)
+    }
+
+    let handlerFileSelect = (files) => {
+      let temp = []
+      if(files.length){
+        temp = [files[files.length-1]]
+      }
+      console.log(temp)
+      if(temp.length){
+        // TODO upload Image
+        onChange([{
+          url: file_icon,
+          id: Math.random()
+        }])
+      } else {
+        onChange([])
+      }
     }
 
     let input = <InputItem clear value={item.value} onChange={onChange} onBlur={onBlur} />
@@ -53,7 +82,9 @@ class RenderInputItem extends React.Component{
         <List.Item arrow="horizontal"> </List.Item>
       </DatePicker>
     } else if (type === 'IMAGE') {
-      input = <ImagePicker onChange={imgChange} />
+      input = <ImagePicker files={item.value || []} onChange={handlerImageSelect} accept={acceptType[type]}/>
+    } else if (type === 'FILE' || type === 'VIDEO') {
+      input = <ImagePicker files={item.value || []} onChange={handlerFileSelect} accept={acceptType[type]}/>
     }
     return input
   }

@@ -1,4 +1,7 @@
-
+*{
+  // 是否允许用户操作
+  // touch-action: none;
+}
 .longtext(@line){
   overflow: hidden;
   white-space: normal;
@@ -49,5 +52,13 @@
   }
   >p{
     color: #999;
+  }
+}
+.no_bgc{
+  >.am-list-body{
+    background-color: transparent;
+    &::before, &::after{
+      background-color: transparent !important;
+    }
   }
 }
